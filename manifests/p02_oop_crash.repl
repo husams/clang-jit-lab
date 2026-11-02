@@ -1,0 +1,6 @@
+// Part 2.10 -- what a crash does to an out-of-process session.
+extern "C" int puts(const char *);
+puts("before the crash");
+int *p = nullptr;
+*p = 1;
+puts("after the crash");

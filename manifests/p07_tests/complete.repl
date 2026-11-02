@@ -1,0 +1,10 @@
+// %complete uses the same machinery as Tab.
+struct Counter { int n = 0; void bump() { ++n; } int get() const { return n; } };
+Counter c;
+int counter_total = 0;
+%complete cou
+%complete Cou
+%complete c.
+%complete c.b
+%complete c.bump(); c.g
+%complete zzzz

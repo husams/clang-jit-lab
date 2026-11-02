@@ -1,0 +1,10 @@
+// Part 3.6 -- what %undo takes back, and what it cannot.
+int hits = 0;
+int bump() { return ++hits; }
+bump(); bump();
+%undo
+hits
+%undo
+%undo
+bump
+hits

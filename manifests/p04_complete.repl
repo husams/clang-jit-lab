@@ -1,0 +1,7 @@
+// Part 4.10 -- the declarations that completion should know about.
+#include <string>
+#include <vector>
+int lab_counter = 0;
+int lab_total(int a, int b) { return a + b; }
+struct LabPoint { int x; int y; int norm2() const { return x * x + y * y; } };
+LabPoint lab_point{3, 4};

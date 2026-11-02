@@ -1,0 +1,13 @@
+// %time output is masked by XREPL_DETERMINISTIC=1; %undo [N] removes inputs and their records.
+long fib(long n) { return n < 2 ? n : fib(n - 1) + fib(n - 2); }
+%time fib(15)
+%time int declared = 1;
+%time int broken = ;
+int x = 1;
+int y = 2;
+%undo
+%decls
+%undo 2
+%decls
+%undo 99
+fib(10)

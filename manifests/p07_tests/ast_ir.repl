@@ -1,0 +1,16 @@
+// %ast and %ir follow the LAST input and are masked.
+%ast
+%ir
+int twice(int v) { return 2 * v; }
+%ast
+%ir
+struct Point { int x, y; };
+%ast Point
+%ast twice
+Point p{1, 2};
+%ir
+// a comment is an input too
+%ast
+%ir
+twice(4)
+%ast

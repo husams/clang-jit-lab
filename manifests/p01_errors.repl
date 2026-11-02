@@ -1,0 +1,13 @@
+// Part 1.6 -- errors, and what they leave behind.
+// 1. A parse error: the whole input is rolled back, even the part before the error.
+int good = 1; int bad = ;
+good
+// 2. Redefinition: the interpreter is one growing translation unit.
+int total = 10;
+int total = 20;
+total
+// 3. A link error: the input parsed, but a symbol is missing when it runs.
+int helper(int);
+helper(1)
+int helper(int v) { return v + 100; }
+helper(1)

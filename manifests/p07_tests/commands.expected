@@ -1,0 +1,42 @@
+xrepl> // Every % command, including the ways they go wrong.
+xrepl> %help
+%help             list xrepl %commands
+%undo [N]         undo the previous N inputs (default 1)
+%lib <path>       link a dynamic library
+%quit             exit xrepl
+%ast [name]       AST of the last input, or of the named declaration
+%ir [full]        LLVM IR of the last input (captured before it ran)
+%type <expr>      static type, size and value category; the expression is not run
+%inspect [expr]   fields of an object in JIT memory (no argument: the last value)
+%decls            every declaration so far, grouped by input
+%complete <text>  completion candidates for text, as Tab shows them
+%time <input>     run an input and report parse and execute time
+xrepl> %nosuch
+error: Invalid % command "%nosuch", use "%help" to list commands
+
+xrepl> %nosuch with arguments
+error: Invalid % command "%nosuch with arguments", use "%help" to list commands
+
+xrepl> %lib
+error: %lib expects 1 argument: the path to a dynamic library
+xrepl> %undo zero
+error: usage: %undo [N]
+xrepl> %undo 0
+error: usage: %undo [N]
+xrepl> %type
+error: usage: %type <expression>
+xrepl> %ast nosuch
+error: no declaration named 'nosuch'
+xrepl> %ir bogus
+error: usage: %ir [full]
+xrepl> %time
+error: usage: %time <C++ input>
+xrepl> %time %help
+error: usage: %time <C++ input>
+xrepl> %inspect nosuch.field
+In file included from <<< inputs >>>:1:
+input_line_2:1:30: error: use of undeclared identifier 'nosuch'
+    1 | using __xrepl_ty = decltype((nosuch.field));
+      |                              ^~~~~~
+error: Parsing failed.
+xrepl> %quit

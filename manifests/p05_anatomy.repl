@@ -1,0 +1,21 @@
+// Part 5.1 -- one Value per input: what does the interpreter hand back?
+int x = 42;
+double d = 2.5;
+struct P { int a; int b; };
+P p{1, 2};
+void nothing() {}
+x
+x + 1
+d * 2
+(x > 3)
+'A'
+"hello"
+nothing()
+nothing
+p
+P{3, 4}
+&x
+static_cast<void *>(&x)
+nullptr
+int arr[3] = {7, 8, 9};
+arr

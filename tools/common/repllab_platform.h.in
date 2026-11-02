@@ -1,0 +1,3 @@
+#pragma once
+// Match the embedded compiler's system headers to those used for this host.
+#define REPLLAB_HOST_CXX_INCLUDE_DIRS "@CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES@"

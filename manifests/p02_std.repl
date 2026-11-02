@@ -1,0 +1,11 @@
+// Part 2.1 -- C++20 features, available once the REPL is in C++20 mode.
+__cplusplus
+#include <concepts>
+template <typename T> concept Small = sizeof(T) <= 4;
+Small<char>
+Small<double>
+auto twice(std::integral auto v) { return 2 * v; }
+twice(21)
+struct Opts { int width = 80; bool color = false; };
+Opts o{.color = true};
+o.width

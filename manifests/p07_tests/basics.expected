@@ -1,0 +1,25 @@
+xrepl> // xrepl behaves like clang-repl: declarations, statements, values, errors, continuation.
+xrepl> int x = 41;
+xrepl> ++x;
+xrepl> x
+(int) 42
+xrepl> int add(int a, \
+xrepl...           int b) { return a + b; }
+xrepl> add(x, 1)
+(int) 43
+xrepl> #include <cstdio>
+xrepl> printf("from the JIT\n");
+from the JIT
+xrepl> x +
+<<< inputs >>>:1:1: error: expected expression
+error: Parsing failed.
+xrepl> nosuch + 1
+In file included from <<< inputs >>>:1:
+input_line_12:1:1: error: use of undeclared identifier 'nosuch'
+    1 | nosuch + 1
+      | ^~~~~~
+error: Parsing failed.
+xrepl> x
+(int) 42
+xrepl> double d = 1.5; d * 2
+(double) 3.0

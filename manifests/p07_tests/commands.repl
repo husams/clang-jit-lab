@@ -1,0 +1,15 @@
+// Every % command, including the ways they go wrong.
+%help
+%nosuch
+%nosuch with arguments
+%lib
+%undo zero
+%undo 0
+%type
+%ast nosuch
+%ir bogus
+%time
+%time %help
+%inspect nosuch.field
+%quit
+int never_reached = 1;

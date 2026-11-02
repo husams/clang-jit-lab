@@ -1,0 +1,22 @@
+// Part 5.8 -- types with sugar, and records with holes
+#include <cstddef>
+#include <string>
+using Id = long;
+typedef const Id CId;
+CId answer = 42;
+const CId *pid = &answer;
+std::size_t count = 3;
+std::string text = "layout";
+auto deduced = pid;
+struct Inner { char c; double d; };
+struct Base { int b; };
+struct Layout : Base { char tag; short s; Inner in; int arr[3]; bool flag; void *p; };
+struct Poly { virtual ~Poly() {} int v; };
+struct Bits { unsigned a : 3; unsigned b : 5; int c; };
+struct VB { int v; };
+struct VD : virtual VB { int d; };
+union U { char c; double d; int i[3]; };
+template <typename T> struct Pair { T first; char tag; T second; };
+Pair<int> pi;
+Pair<double> pd;
+Pair<char> pc;

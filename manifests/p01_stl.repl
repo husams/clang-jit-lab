@@ -1,0 +1,15 @@
+// Part 1.8 -- the C++ standard library at the prompt.
+#include <algorithm>
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+std::vector<int> v{5, 3, 9, 1};
+std::sort(v.begin(), v.end());
+for (int e : v) std::cout << e << ' '; std::cout << '\n';
+v
+v.size()
+std::string name = "clang-repl";
+name.c_str()
+std::map<std::string, int> ages{{"ada", 36}, {"alan", 41}};
+ages["alan"]

@@ -1,0 +1,8 @@
+// Part 7.3 -- %ast and %ir: what the last input became.
+int twice(int v) { return 2 * v; }
+%ast
+%ir
+struct Point { int x, y; };
+Point origin{0, 0};
+%ast
+%ir

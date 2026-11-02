@@ -1,0 +1,11 @@
+// Part 7.4 -- %inspect: read an object out of JIT memory with the AST record layout.
+enum Color { Red, Green = 5 };
+struct Inner { char tag; double d; };
+struct Rec { int id; Color c; Inner in; int arr[3]; const char *name; unsigned flag : 3; unsigned more : 5; bool ok; char s[8]; };
+Rec r{7, Green, {'a', 2.5}, {1, 2, 3}, "hello", 5, 17, true, "hey"};
+%inspect r
+%inspect r.arr
+%inspect Inner{'z', 1}
+%inspect r.flag
+r.id * 6
+%inspect

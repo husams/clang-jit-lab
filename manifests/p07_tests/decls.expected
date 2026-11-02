@@ -1,0 +1,37 @@
+xrepl> // %decls: grouped by input number, kind and name; included files are only counted.
+xrepl> %decls
+input kind               name
+xrepl> int one = 1;
+xrepl> struct S { int f; };
+xrepl> int a = 1, b = 2;
+xrepl> extern "C" int c_fn(int v) { return v; }
+xrepl> enum class E { X, Y };
+xrepl> using L = long;
+xrepl> one + 1
+(int) 2
+xrepl> for (int i = 0; i < 2; ++i) ++one;
+xrepl> %undo 2
+xrepl> %decls
+input kind               name
+2     variable           one
+3     struct             S
+4     variable           a
+      variable           b
+5     function           c_fn
+6     enum               E
+7     alias              L
+xrepl> struct P { int x; };
+xrepl> bool operator==(P a, P b) { return a.x == b.x; }
+xrepl> P operator+(P a, P b) { return P{a.x + b.x}; }
+xrepl> %decls
+input kind               name
+2     variable           one
+3     struct             S
+4     variable           a
+      variable           b
+5     function           c_fn
+6     enum               E
+7     alias              L
+8     struct             P
+9     function           operator==
+10    function           operator+

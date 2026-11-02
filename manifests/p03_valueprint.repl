@@ -1,0 +1,12 @@
+// Part 3.4 -- one expression of each value-printing interface kind.
+int x = 41;
+x + 1
+double d = 2.5; d * 2
+int *p = &x; p
+struct S { int a, b; };
+S s{1, 2}; s
+S{3, 4}
+int arr[3] = {1, 2, 3}; arr
+extern "C" int puts(const char *);
+void shout() { puts("shout ran"); }
+shout()

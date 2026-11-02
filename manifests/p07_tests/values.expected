@@ -1,0 +1,22 @@
+xrepl> // Objects are destroyed right after printing (as in clang-repl); numbers are kept for %inspect.
+xrepl> #include <cstdio>
+xrepl> struct D { int id; ~D() { printf("~D(%d)\n", id); } };
+xrepl> D{1}
+(D) @0xADDR
+~D(1)
+xrepl> D{2}
+(D) @0xADDR
+~D(2)
+xrepl> %inspect
+error: no value kept (objects are destroyed right after printing); use %inspect <expression>
+xrepl> 7 * 6
+(int) 42
+xrepl> %inspect
+$last : int = 42
+xrepl> D{3}
+(D) @0xADDR
+~D(3)
+xrepl> %inspect D{4}
+D{4} : D  (4 bytes)
+  +0   id : int = 4
+~D(4)

@@ -1,0 +1,14 @@
+// Part 2.5 -- exceptions, constructors and destructors at the prompt.
+#include <cstdio>
+#include <stdexcept>
+struct Noisy { const char *n; Noisy(const char *n) : n(n) { std::printf("ctor %s\n", n); } ~Noisy() { std::printf("dtor %s\n", n); } };
+Noisy a("a");
+Noisy b("b");
+{ Noisy scoped("scoped"); }
+Noisy("temporary");
+int checked(int v) { if (v < 0) throw std::invalid_argument("negative"); return v; }
+try { checked(-1); } catch (const std::exception &e) { std::printf("caught: %s\n", e.what()); }
+int calls() { static Noisy once("function-local static"); static int n = 0; return ++n; }
+calls(); calls()
+__CLANG_REPL__
+%quit

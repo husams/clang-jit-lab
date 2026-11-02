@@ -1,0 +1,5 @@
+// Part 5.1 -- a void call without a semicolon yields K_Void, and never runs
+#include <cstdio>
+void hello() { puts("hello ran"); }
+hello()
+hello();

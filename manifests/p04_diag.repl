@@ -1,0 +1,10 @@
+// Part 4.4 -- inputs that produce warnings, errors and a clean recovery.
+int good = 1;
+int x = unknown_name;
+int y = "text";
+int w = (int)3.5 / 0;
+void f() { int unused; }
+good + 1
+struct P { int a; }; P p; p.b
+int good = 2;
+good + 41

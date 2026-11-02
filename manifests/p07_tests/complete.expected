@@ -1,0 +1,17 @@
+xrepl> // %complete uses the same machinery as Tab.
+xrepl> struct Counter { int n = 0; void bump() { ++n; } int get() const { return n; } };
+xrepl> Counter c;
+xrepl> int counter_total = 0;
+xrepl> %complete cou
+counter_total
+xrepl> %complete Cou
+Counter
+xrepl> %complete c.
+bump
+get
+xrepl> %complete c.b
+bump
+xrepl> %complete c.bump(); c.g
+get
+xrepl> %complete zzzz
+(no candidates)

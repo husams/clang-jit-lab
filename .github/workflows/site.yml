@@ -1,0 +1,28 @@
+name: Validate site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Graphviz
+        run: sudo apt-get update && sudo apt-get install -y graphviz
+      - name: Check lesson sources and links
+        run: |
+          python3 scripts/complete_examples.py
+          python3 scripts/check_links.py
+      - name: Build and verify HTML
+        run: |
+          python3 scripts/build_site.py
+          python3 scripts/check_site.py

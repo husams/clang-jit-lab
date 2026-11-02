@@ -1,0 +1,13 @@
+// Part 1.2 -- declarations, statements and expressions at the prompt.
+// Declarations: a variable, a function, a type.
+int answer = 41;
+int twice(int v) { return 2 * v; }
+struct Point { int x, y; };
+// Statements: run once, right now, at "global scope".
+++answer;
+for (int i = 0; i < 3; ++i) answer += i;
+if (answer > 40) answer = twice(answer);
+// Expressions without a semicolon: evaluated and printed.
+answer
+Point{3, 4}.y
+twice(answer) - 1

@@ -1,0 +1,6 @@
+// Part 4.6 -- one declaration, a function, a statement, an expression, a namespace.
+int base = 40;
+int add(int v) { return v + base; }
+base = add(2);
+base
+namespace lab { struct Box { int w; }; int area(Box b) { return b.w * b.w; } }

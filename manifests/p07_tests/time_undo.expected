@@ -1,0 +1,29 @@
+xrepl> // %time output is masked by XREPL_DETERMINISTIC=1; %undo [N] removes inputs and their records.
+xrepl> long fib(long n) { return n < 2 ? n : fib(n - 1) + fib(n - 2); }
+xrepl> %time fib(15)
+(long) 610
+parse: <t> exec: <t>
+xrepl> %time int declared = 1;
+parse: <t> exec: <t>
+xrepl> %time int broken = ;
+In file included from <<< inputs >>>:1:
+input_line_6:1:14: error: expected expression
+    1 | int broken = ;
+      |              ^
+error: Parsing failed.
+xrepl> int x = 1;
+xrepl> int y = 2;
+xrepl> %undo
+xrepl> %decls
+input kind               name
+2     function           fib
+4     variable           declared
+5     variable           x
+xrepl> %undo 2
+xrepl> %decls
+input kind               name
+2     function           fib
+xrepl> %undo 99
+error: Operation failed. Wanted to undo 99 inputs, only have 3.
+xrepl> fib(10)
+(long) 55

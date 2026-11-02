@@ -1,0 +1,18 @@
+// Part 6.7 -- JIT code that defines new functions by calling the interpreter.
+#include <stdio.h>
+extern "C" int repl_eval(const char *code);
+extern "C" void *repl_lookup(const char *name);
+// One call defines a function; it is not visible to the rest of THIS input
+// (already compiled), but the next input can call it.
+repl_eval("int made_by_eval(int x) { return x + 1; }");
+printf("made_by_eval(41) = %d\n", made_by_eval(41));
+// Code that writes code: build the source of x^n, compile it with repl_eval,
+// find it with repl_lookup and call it, all inside ONE call of gen_and_call.
+#include <string>
+long gen_and_call(int n, long x) { \
+  std::string name = "pow" + std::to_string(n), body = "x"; \
+  for (int k = 1; k < n; ++k) body += " * x"; \
+  repl_eval(("extern \"C\" long " + name + "(long x) { return " + body + "; }").c_str()); \
+  return ((long (*)(long))repl_lookup(name.c_str()))(x); \
+}
+for (int n = 1; n <= 4; ++n) printf("pow%d(3) = %ld\n", n, gen_and_call(n, 3));

@@ -1,0 +1,12 @@
+// Part 7.4 -- %type: the front end's answer; nothing is executed.
+#include <string>
+struct Point { int x, y; };
+Point p{3, 4};
+int hits = 0;
+int bump() { ++hits; return hits; }
+%type p
+%type bump
+%type bump()
+%type std::string("x").size()
+%type nosuch
+hits

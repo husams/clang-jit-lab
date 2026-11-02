@@ -1,0 +1,19 @@
+// Part 7.5 -- %decls and %complete.
+#include <cstdio>
+int counter = 0;
+struct Counter { int n = 0; void bump() { ++n; } int get() const { return n; } };
+Counter c;
+void report(const Counter &x) { printf("n=%d\n", x.n); }
+int a = 1, b = 2;
+extern "C" int c_twice(int v) { return 2 * v; }
+enum class Mode { Fast, Slow };
+using Number = long;
+%decls
+%complete cou
+%complete rep
+%complete c.
+%complete c.g
+%complete Cou
+%complete c.bump(); c.g
+%complete std::vec
+%complete zzz

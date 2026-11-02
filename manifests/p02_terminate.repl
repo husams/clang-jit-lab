@@ -1,0 +1,5 @@
+// Part 2.5 -- an exception nobody catches ends the session.
+int checked(int v) { if (v < 0) throw 42; return v; }
+int kept = 1;
+checked(-1)
+kept

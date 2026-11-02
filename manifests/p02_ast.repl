@@ -1,0 +1,5 @@
+// Part 2.7 -- small inputs whose AST is easy to read.
+int TestVar = 12;
+void TestFunc() { ++TestVar; }
+TestFunc();
+TestVar + 1

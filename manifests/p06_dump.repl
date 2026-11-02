@@ -1,0 +1,3 @@
+// Part 6.8 -- two small inputs for the -ast-dump variant.
+struct Point { int x, y; };
+int area(Point p) { return p.x * p.y; }

@@ -1,0 +1,10 @@
+// Objects are destroyed right after printing (as in clang-repl); numbers are kept for %inspect.
+#include <cstdio>
+struct D { int id; ~D() { printf("~D(%d)\n", id); } };
+D{1}
+D{2}
+%inspect
+7 * 6
+%inspect
+D{3}
+%inspect D{4}

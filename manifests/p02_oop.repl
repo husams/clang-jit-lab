@@ -1,0 +1,7 @@
+// Part 2.10 -- the same inputs in-process and out-of-process.
+extern "C" const char *getprogname(void);
+extern "C" int puts(const char *);
+puts(getprogname());
+int counter = 41; ++counter;
+puts(counter == 42 ? "state kept between inputs" : "state lost");
+counter

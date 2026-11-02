@@ -1,0 +1,5 @@
+// Part 2.3 -- nothing to include: the prelude was loaded before the first prompt.
+std::vector<int> v(5);
+std::iota(v.begin(), v.end(), 1);
+show(v);
+lab_build

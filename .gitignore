@@ -1,0 +1,14 @@
+build/
+out/
+site/
+.build.lock/
+build.cmake.log
+__pycache__/
+.DS_Store
+.cache/
+.vscode/
+.env
+.env.*
+!.env.example
+*.pem
+*.key

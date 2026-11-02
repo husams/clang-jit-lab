@@ -1,0 +1,13 @@
+// Part 5.9 -- a nested object to take apart
+#include <string>
+enum Color : unsigned char { Red, Green = 5, Blue };
+enum class Level : short { Low = 1, High = 9 };
+struct Vec2 { float x; float y; };
+struct Base { int id; };
+struct Shape : Base { Color color; Vec2 pos; };
+struct Scene { Shape main; Level lvl; char label[8]; int grid[2][3]; const char *title; Shape *next; unsigned flags : 4; unsigned mode : 2; int delta : 3; double scale; };
+Scene scene = {{{7}, Green, {1.5f, -2.0f}}, Level::High, "hello", {{1, 2, 3}, {4, 5, 6}}, "demo", nullptr, 5, 2, -1, 0.25};
+scene.main.pos.y = -2.5f;
+scene.next = &scene.main;
+std::string small = "short";
+std::string big = "a string that is clearly longer than libc++'s inline buffer";

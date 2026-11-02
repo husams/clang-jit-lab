@@ -1,0 +1,4 @@
+// Part 2.1 -- macros and optimisation level come from the command line.
+LAB_NAME
+LAB_LEVEL * 2
+__OPTIMIZE__

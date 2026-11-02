@@ -1,0 +1,11 @@
+// Part 1.5 -- the built-in %commands.
+%help
+int version() { return 1; }
+version()
+%undo
+%undo
+int version() { return 2; }
+version()
+%nosuch
+%quit
+version()

@@ -1,0 +1,6 @@
+// Part 6.3 -- JIT code calls two host functions: one exported, one static.
+#include <stdio.h>
+extern "C" int host_exported();
+extern "C" int host_secret();
+printf("exported: %d\n", host_exported());
+printf("secret: %d\n", host_secret());

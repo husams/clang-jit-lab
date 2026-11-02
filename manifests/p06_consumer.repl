@@ -1,0 +1,8 @@
+// Part 6.1 -- inputs for the logging subclass: a variable, a function, a type,
+// a statement, and a semicolon-less expression (which prints in a stock REPL).
+int a = 41;
+int next() { return ++a; }
+struct S { int x; };
+next();
+a
+__CLANG_REPL__

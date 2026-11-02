@@ -1,0 +1,13 @@
+// xrepl behaves like clang-repl: declarations, statements, values, errors, continuation.
+int x = 41;
+++x;
+x
+int add(int a, \
+        int b) { return a + b; }
+add(x, 1)
+#include <cstdio>
+printf("from the JIT\n");
+x +
+nosuch + 1
+x
+double d = 1.5; d * 2

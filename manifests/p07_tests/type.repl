@@ -1,0 +1,11 @@
+// %type: the front end's answer, nothing is executed.
+int hits = 0;
+int bump() { ++hits; return hits; }
+%type hits
+%type bump
+%type bump()
+%type hits + 1.5
+%type &hits
+%type "text"
+%type nosuch
+hits

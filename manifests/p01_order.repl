@@ -1,0 +1,5 @@
+// Part 1.7 -- two output streams: value printing and the program's own stdout.
+#include <cstdio>
+std::printf("first\n");
+1 + 1
+std::printf("second\n");

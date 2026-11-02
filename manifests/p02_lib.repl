@@ -1,0 +1,9 @@
+// Part 2.4 -- declarations come from the header, code from the library.
+#include "manifests/p02_greet.h"
+greet_version()
+%undo
+%lib out/libp02greet.dylib
+greet_version()
+greet("world");
+greet("again");
+greet_count()

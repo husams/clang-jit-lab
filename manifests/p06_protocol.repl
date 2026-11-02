@@ -1,0 +1,8 @@
+// Part 6.5 -- what the interpreter asks of an executor.
+#include <stdio.h>
+int answer() { return 42; }
+struct Bye { ~Bye() { printf("static destructor ran\n"); } } bye;
+answer()
+int scratch = 1;
+%undo
+printf("still alive\n");

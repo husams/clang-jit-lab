@@ -1,0 +1,10 @@
+// Part 6.8 -- inputs for the snippet checker: good, bad, and dependent ones.
+#include <vector>
+struct Point { int x, y; };
+int area(Point p) { return p.x * p.y; }
+int broken(Point p) { return p.z; }
+int uses_area() { return area(Point{2, 3}); }
+auto v = std::vector<int>{1, 2, 3};
+undeclared_function(1);
+template <class T> T twice(T v) { return v + v; }
+double d = twice(1.5);

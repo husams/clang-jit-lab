@@ -1,0 +1,4 @@
+// Part 2.9 -- one expectation is wrong, one diagnostic is unexpected.
+int z = ; // expected-error {{expected something else}}
+int w = undeclared;
+%quit

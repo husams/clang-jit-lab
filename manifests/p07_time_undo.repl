@@ -1,0 +1,17 @@
+// Part 7.6 -- %time and %undo.
+long fib(long n) { return n < 2 ? n : fib(n - 1) + fib(n - 2); }
+%time fib(20)
+%time int unused = 0;
+%time int broken = ;
+int x = 1;
+int y = 2;
+int z = 3;
+%decls
+%undo
+%decls
+%undo 2
+%decls
+%undo 5
+%undo zero
+x
+fib(10)

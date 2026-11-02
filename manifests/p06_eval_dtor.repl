@@ -1,0 +1,4 @@
+// Part 6.7 -- the one place re-entrancy is not safe: a static destructor that
+// calls the interpreter runs while the interpreter is being destroyed.
+extern "C" int repl_eval(const char *code);
+struct Late { ~Late() { repl_eval("int too_late = 1;"); } } late;

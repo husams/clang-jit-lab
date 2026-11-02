@@ -1,0 +1,13 @@
+// Part 7.2 -- the line-editing loop: continuation, % commands, errors, %quit.
+int add(int x, \
+        int y) { return x + y; }
+add(2, 3)
+int a = 1; \
+int b = 2; \
+a + b
+%help
+%nosuch arg
+add(1
+add(1, 1)
+%quit
+int never_reached = 1;

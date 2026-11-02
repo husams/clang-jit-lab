@@ -1,0 +1,5 @@
+// Part 4.7 -- a global, a function, a statement and an expression.
+int counter = 5;
+int bump(int by) { counter += by; return counter; }
+bump(10);
+counter

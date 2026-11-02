@@ -1,0 +1,6 @@
+// Part 2.8 -- every input passes through the plugin's ASTConsumer.
+int i = 10;
+int twice(int v) { return 2 * v; }
+twice(i)
+struct S { int a; };
+namespace lab { int k; }

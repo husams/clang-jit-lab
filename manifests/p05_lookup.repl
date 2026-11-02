@@ -1,0 +1,18 @@
+// Part 5.7 -- one of everything a lookup can find
+int counter = 41;
+auto ratio = counter / 4.0;
+extern "C" int c_add(int a, int b) { return a + b; }
+int over(int x) { return x; }
+int over(double x) { return (int)x; }
+int over(int x, int y) { return x + y; }
+struct Point { int x; int y; };
+Point origin{3, 4};
+enum Mode { Fast, Slow = 5 };
+using Id = long;
+namespace geo { \
+  int unit = 10; \
+  struct Box { int w; int h; }; \
+  double area(double w, double h) { return w * h; } \
+  namespace inner { int deep = 3; } \
+}
+template <typename T> T twice(T x) { return x + x; }

@@ -1,0 +1,7 @@
+// Part 2.9 -- expected diagnostics are part of the test.
+int x = 42;
+auto y = unknown_val; // expected-error {{use of undeclared identifier 'unknown_val'}}
+int x = 1; // expected-error {{redefinition of 'x'}} expected-note@input_line_2:1 {{previous definition is here}}
+x == 42; // expected-warning {{equality comparison result unused}} expected-note {{use '=' to turn this equality comparison into an assignment}}
+x
+%quit

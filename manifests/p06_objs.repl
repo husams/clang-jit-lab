@@ -1,0 +1,5 @@
+// Part 6.4 -- two inputs that each need machine code.
+int sum_to(int n) { int s = 0; for (int i = 1; i <= n; ++i) s += i * i; return s; }
+sum_to(10)
+int twice(int v) { return 2 * v; }
+twice(sum_to(3))

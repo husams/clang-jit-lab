@@ -1,0 +1,9 @@
+// Part 6.2 -- the interpreter writes operator<< for every class you define.
+struct Point { int x, y; };
+std::cout << Point{3, 4} << "\n";
+struct Person { std::string name; int age; bool admin; double score; };
+std::cout << Person{"Ada", 36, true, 9.5} << "\n";
+enum class Color { Red, Green };
+struct Pixel { Point at; Color color; int rgb[3]; };
+std::cout << Pixel{{1, 2}, Color::Green, {255, 128, 0}} << "\n";
+class Secret { int hidden = 1; public: int shown = 2; };

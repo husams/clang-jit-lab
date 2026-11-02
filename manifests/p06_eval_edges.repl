@@ -1,0 +1,8 @@
+// Part 6.7 -- corners of re-entrancy: depth 2, value printing, errors, initializers.
+extern "C" int repl_eval(const char *code);
+repl_eval("repl_eval(\"int nested() { return 7; }\");")
+nested()
+repl_eval("1 + 1")
+repl_eval("int bad = ;")
+int boot = repl_eval("int from_init = 5;");
+from_init

@@ -1,0 +1,41 @@
+xrepl> // %type: the front end's answer, nothing is executed.
+xrepl> int hits = 0;
+xrepl> int bump() { ++hits; return hits; }
+xrepl> %type hits
+type     : int
+canonical: int
+category : lvalue
+size     : 4 bytes, align 4
+xrepl> %type bump
+type     : int ()
+canonical: int ()
+category : lvalue
+size     : n/a (function)
+xrepl> %type bump()
+type     : int
+canonical: int
+category : prvalue
+size     : 4 bytes, align 4
+xrepl> %type hits + 1.5
+type     : double
+canonical: double
+category : prvalue
+size     : 8 bytes, align 8
+xrepl> %type &hits
+type     : int *
+canonical: int *
+category : prvalue
+size     : 8 bytes, align 8
+xrepl> %type "text"
+type     : const char[5]
+canonical: const char[5]
+category : lvalue
+size     : 5 bytes, align 1
+xrepl> %type nosuch
+In file included from <<< inputs >>>:1:
+input_line_10:1:30: error: use of undeclared identifier 'nosuch'
+    1 | using __xrepl_ty = decltype((nosuch));
+      |                              ^~~~~~
+error: Parsing failed.
+xrepl> hits
+(int) 0

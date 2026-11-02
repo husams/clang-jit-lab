@@ -1,0 +1,26 @@
+// %inspect: builtins, enums, pointers, nested records, arrays, bit-fields, bases.
+enum Color { Red, Green = 5 };
+struct Inner { char tag; double d; };
+struct Rec { int id; Color c; Inner in; int arr[3]; const char *name; unsigned flag : 3; unsigned more : 5; bool ok; char s[8]; };
+Rec r{7, Green, {'a', 2.5}, {1, 2, 3}, "hello", 5, 17, true, "hey"};
+%inspect r
+%inspect r.in
+%inspect r.arr
+%inspect &r
+%inspect r.id + 1
+struct Base { virtual void f() {} int b = 1; };
+struct Der : Base { int d = 2; };
+Der dd;
+%inspect dd
+int big[20];
+%inspect big
+%inspect r.flag
+int twice(int v) { return 2 * v; }
+%inspect twice
+%inspect
+r.id
+%inspect
+struct M { int a = 5; M() = default; M(M &&o) : a(o.a) { o.a = 0; } };
+M m;
+%inspect static_cast<M &&>(m)
+m.a

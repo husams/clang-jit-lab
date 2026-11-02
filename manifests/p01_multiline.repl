@@ -1,0 +1,13 @@
+// Part 1.4 -- one input over several lines, and comments.
+int clamp(int v, int lo, int hi) { \
+  if (v < lo) return lo;           \
+  if (v > hi) return hi;           \
+  return v;                        \
+}
+clamp(15, 0, 10)
+/* block comments are inputs too: they parse to nothing */
+// A multi-line macro needs a double backslash: the REPL eats one,
+// the preprocessor sees the other.
+#define CUBE(x) \\
+  ((x) * (x) * (x))
+CUBE(3)

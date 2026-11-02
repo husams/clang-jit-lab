@@ -1,0 +1,12 @@
+// Part 2.2 -- the same REPL in C mode (--Xcc=-xc).
+__STDC_VERSION__
+int x = 42; x
+printf("hi\n");
+#include <stdio.h>
+printf("hi %d\n", x);
+struct pt { int x, y; } p = { 1, 2 }; p
+p.y
+"Hello"
+_Bool ok = 1; ok
+int grid[2][2] = {{1, 2}, {3, 4}}; grid
+class C {};
