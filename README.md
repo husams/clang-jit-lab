@@ -28,7 +28,8 @@ Rebuilding local HTML does not publish it. Maintainers with access to the Kubern
 ```bash
 python3 scripts/build_site.py
 python3 scripts/check_site.py
-python3 scripts/deploy.py apply --no-build --alias clang-repl-lab.senussi.me
+python3 scripts/deploy.py apply --no-build --alias clang-repl-lab.senussi.me \
+  --dns-target 192.168.1.200
 ```
 
-The deployment serves the lessons and browser progress interface; C++ exercises run on the learner's machine. The previous address, [clang-repl-lab.senussi.me](https://clang-repl-lab.senussi.me/), remains an alias. DNS must point both names at the gateway; the deployment script does not manage DNS directly. It writes its rendered manifest to `out/deploy/manifest.json` and waits for the rollout before probing HTTPS. Before an update, save the existing labelled Deployment, Service, VirtualService and ConfigMaps for rollback; the script removes old ConfigMaps after a successful rollout.
+The deployment serves the lessons and browser progress interface; C++ exercises run on the learner's machine. The previous address, [clang-repl-lab.senussi.me](https://clang-repl-lab.senussi.me/), remains an alias. `--dns-target` asks the cluster's existing ExternalDNS controller to publish both names at the gateway address; without that controller, create DNS records separately. The script writes its rendered manifest to `out/deploy/manifest.json` and waits for the rollout before probing HTTPS. Before an update, save the existing labelled Deployment, Service, VirtualService and ConfigMaps for rollback; the script removes old ConfigMaps after a successful rollout.

@@ -11,6 +11,7 @@ Options:
     --namespace NS       namespace (default: docs; created if missing)
     --host NAME          host name routed by the Istio gateway (default: clang-jit.senussi.me)
     --alias NAME         additional host name routed to the same site (repeatable)
+    --dns-target IP      ask an installed ExternalDNS controller to publish this target
     --gateway NS/NAME    Istio Gateway to bind the VirtualService to (default: istio-system/main-gateway)
     --gateway-ip IP      address used to probe the URL without DNS (default: 192.168.1.200)
     --no-build           use site/ as it is, without running scripts/build_site.py
@@ -29,7 +30,9 @@ update of the Deployment; ConfigMaps of older versions are deleted after the rol
 Objects are applied with server-side apply (a client-side apply would try to store each
 ConfigMap again in an annotation, which is limited to 256 KB).
 
-DNS is not managed here: HOST needs an A record pointing at the gateway's address.
+DNS requires an A record pointing at the gateway's address. If ExternalDNS watches
+Istio VirtualServices, --dns-target adds its target annotation; otherwise create the
+record separately. No DNS provider credentials are handled by this script.
 """
 import argparse
 import base64
@@ -145,7 +148,7 @@ def key_for(rel):
     return rel.replace("/", "__")
 
 
-def render(ns, host, gateway, aliases=()):
+def render(ns, host, gateway, aliases=(), dns_target=None):
     files = site_files()
     bins = pack(files)
     objects, sources = [], []
@@ -225,7 +228,9 @@ def render(ns, host, gateway, aliases=()):
     })
     objects.append({
         "apiVersion": "networking.istio.io/v1", "kind": "VirtualService",
-        "metadata": {"name": APP, "namespace": ns, "labels": labels("web")},
+        "metadata": {"name": APP, "namespace": ns, "labels": labels("web"),
+                     **({"annotations": {"external-dns.alpha.kubernetes.io/target": dns_target}}
+                        if dns_target else {})},
         "spec": {"hosts": list(dict.fromkeys([host, *aliases])), "gateways": [gateway],
                  "http": [{"route": [{"destination": {"host": f"{APP}.{ns}.svc.cluster.local",
                                                       "port": {"number": 80}}}]}]},
@@ -273,6 +278,7 @@ def main(argv):
     ap.add_argument("--namespace", default="docs")
     ap.add_argument("--host", default="clang-jit.senussi.me")
     ap.add_argument("--alias", action="append", default=[])
+    ap.add_argument("--dns-target")
     ap.add_argument("--gateway", default="istio-system/main-gateway")
     ap.add_argument("--gateway-ip", default="192.168.1.200")
     ap.add_argument("--no-build", action="store_true")
@@ -289,7 +295,7 @@ def main(argv):
     if a.action in ("apply", "render"):
         if not a.no_build:
             subprocess.run([sys.executable, str(ROOT / "scripts" / "build_site.py")], check=True)
-        manifest, bins = render(ns, a.host, a.gateway, a.alias)
+        manifest, bins = render(ns, a.host, a.gateway, a.alias, a.dns_target)
         OUT.mkdir(parents=True, exist_ok=True)
         (OUT / "manifest.json").write_text(json.dumps(manifest, indent=2))
         log(f"rendered {len(manifest['items'])} objects ({len(bins)} site ConfigMaps: "
