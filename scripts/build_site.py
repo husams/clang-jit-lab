@@ -729,6 +729,7 @@ def build() -> int:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(plain(title))} &middot; Clang JIT Lab</title>
 <meta name="color-scheme" content="dark">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <script>
 /* apply persisted sidebar state before first paint */
 (function(){{try{{if(localStorage.getItem('clangjit.v2.sidebar')==='collapsed')document.documentElement.classList.add('sb-collapsed');}}catch(e){{}}}})();
@@ -775,7 +776,7 @@ def build() -> int:
         elif old_f.exists():
             old_f.unlink()
     (SITE / "assets").mkdir(parents=True, exist_ok=True)
-    for a in ("style.css", "app.js"):
+    for a in ("style.css", "app.js", "favicon.svg"):
         shutil.copy(ASSETS / a, SITE / "assets" / a)
     shutil.copytree(ASSETS / "vendor", SITE / "assets" / "vendor")
     (SITE / "index.html").write_text(page("index.html", home_title, home_body, None))
